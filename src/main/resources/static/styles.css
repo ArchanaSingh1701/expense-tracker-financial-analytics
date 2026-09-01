@@ -1,0 +1,1100 @@
+/* =========================================================
+   EXPENSE TRACKER
+   MODERN PREMIUM DARK DASHBOARD
+   ========================================================= */
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    min-height: 100vh;
+
+    color: #e8edf7;
+
+    background:
+        radial-gradient(
+            circle at 15% 0%,
+            rgba(76, 81, 191, 0.20),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 5%,
+            rgba(37, 99, 235, 0.16),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            #070b14 0%,
+            #0a0f1c 45%,
+            #080c16 100%
+        );
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+    position: relative;
+
+    padding: 32px 5%;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(16, 23, 42, 0.98),
+            rgba(11, 16, 29, 0.98)
+        );
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+.header::before {
+    content: "";
+
+    position: absolute;
+
+    width: 320px;
+    height: 320px;
+
+    right: 5%;
+    top: -230px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(99, 102, 241, 0.20);
+
+    filter: blur(70px);
+
+    pointer-events: none;
+}
+
+.header::after {
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    left: 10%;
+    bottom: -220px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(37, 99, 235, 0.12);
+
+    filter: blur(70px);
+
+    pointer-events: none;
+}
+
+.header > div {
+    position: relative;
+    z-index: 2;
+
+    max-width: 1250px;
+    margin: auto;
+}
+
+.header h1 {
+    color: #ffffff;
+
+    font-size: 31px;
+    font-weight: 750;
+
+    letter-spacing: -0.8px;
+
+    margin-bottom: 4px;
+}
+
+.header p {
+    color: #8d98ad;
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.container {
+    width: 90%;
+    max-width: 1250px;
+
+    margin: 30px auto 60px;
+}
+
+
+/* =========================================================
+   SUMMARY CARDS
+   ========================================================= */
+
+.summary-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 20px;
+}
+
+.card {
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 135px;
+
+    padding: 22px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(24, 31, 50, 0.96),
+            rgba(14, 19, 32, 0.96)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.24);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(129, 140, 248, 0.25);
+
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.34);
+}
+
+.card h3 {
+    color: #8995aa;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 27px;
+
+    font-weight: 750;
+
+    letter-spacing: -0.7px;
+}
+
+.card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 110px;
+    height: 110px;
+
+    right: -45px;
+    top: -45px;
+
+    border-radius: 50%;
+
+    filter: blur(30px);
+
+    opacity: 0.15;
+}
+
+
+/* =========================================================
+   INDIVIDUAL SUMMARY COLORS
+   ========================================================= */
+
+.income-card {
+    border-top:
+        2px solid #22c55e;
+}
+
+.income-card p {
+    color: #4ade80;
+}
+
+.income-card::after {
+    background: #22c55e;
+}
+
+
+.expense-card {
+    border-top:
+        2px solid #f43f5e;
+}
+
+.expense-card p {
+    color: #fb7185;
+}
+
+.expense-card::after {
+    background: #f43f5e;
+}
+
+
+.balance-card {
+    border-top:
+        2px solid #6366f1;
+}
+
+.balance-card p {
+    color: #818cf8;
+}
+
+.balance-card::after {
+    background: #6366f1;
+}
+
+
+.transaction-card {
+    border-top:
+        2px solid #f59e0b;
+}
+
+.transaction-card p {
+    color: #fbbf24;
+}
+
+.transaction-card::after {
+    background: #f59e0b;
+}
+
+
+/* =========================================================
+   CHART SECTION
+   ========================================================= */
+
+.charts-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 20px;
+}
+
+.chart-card {
+    min-height: 350px;
+
+    padding: 24px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(24, 31, 50, 0.96),
+            rgba(14, 19, 32, 0.96)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.22);
+}
+
+.chart-card h2 {
+    color: #f4f7fb;
+
+    font-size: 18px;
+
+    font-weight: 650;
+
+    margin-bottom: 20px;
+}
+
+.chart-card canvas {
+    width: 100% !important;
+    max-height: 275px;
+}
+
+
+/* =========================================================
+   FORM CARDS
+   ========================================================= */
+
+.form-card {
+    margin-bottom: 20px;
+
+    padding: 26px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(24, 31, 50, 0.96),
+            rgba(14, 19, 32, 0.96)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.22);
+}
+
+.form-card h2 {
+    color: #f5f7fb;
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    margin-bottom: 23px;
+}
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.form-group label {
+    color: #aab4c7;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   INPUTS & SELECTS
+   ========================================================= */
+
+.form-group input,
+.form-group select,
+.filter-group input,
+.filter-group select {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 14px;
+
+    border-radius: 9px;
+
+    border:
+        1px solid #29344a;
+
+    background:
+        #0c1220;
+
+    color: #e6ebf4;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.form-group input::placeholder,
+.filter-group input::placeholder {
+    color: #667187;
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.filter-group input:hover,
+.filter-group select:hover {
+    border-color: #3b4964;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.filter-group input:focus,
+.filter-group select:focus {
+    outline: none;
+
+    border-color: #6366f1;
+
+    background: #0e1526;
+
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.13);
+}
+
+select option {
+    background: #111827;
+
+    color: #f1f5f9;
+}
+
+
+/* =========================================================
+   DATE INPUT
+   ========================================================= */
+
+input[type="date"] {
+    color-scheme: dark;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button {
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 10px 17px;
+
+    margin-top: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #6366f1
+        );
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 650;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 18px rgba(79, 70, 229, 0.20);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 9px 25px rgba(79, 70, 229, 0.30);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    opacity: 0.35;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   FORM MESSAGES
+   ========================================================= */
+
+#formMessage,
+#categoryMessage {
+    min-height: 20px;
+
+    margin-top: 12px;
+
+    color: #818cf8;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   TABLE CARDS
+   ========================================================= */
+
+.table-card {
+    margin-bottom: 20px;
+
+    padding: 26px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(24, 31, 50, 0.96),
+            rgba(14, 19, 32, 0.96)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.22);
+}
+
+
+/* =========================================================
+   SECTION HEADER
+   ========================================================= */
+
+.section-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    color: #f4f7fb;
+
+    font-size: 21px;
+
+    font-weight: 700;
+}
+
+.section-header button {
+    margin-top: 0;
+}
+
+
+/* =========================================================
+   TRANSACTION FILTERS
+   ========================================================= */
+
+.transaction-filters {
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr 1fr;
+
+    gap: 14px;
+
+    padding: 18px;
+
+    margin-bottom: 15px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(8, 13, 25, 0.70);
+
+    border:
+        1px solid #222d42;
+}
+
+.filter-group {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.filter-group label {
+    color: #9da8bc;
+
+    font-size: 12px;
+
+    font-weight: 650;
+
+    margin-bottom: 7px;
+}
+
+
+/* =========================================================
+   FILTER BUTTONS
+   ========================================================= */
+
+.filter-buttons {
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.filter-buttons button {
+    margin-top: 0;
+}
+
+.filter-buttons button:last-child {
+    background:
+        #252e40;
+
+    color: #c1c9d7;
+
+    box-shadow: none;
+}
+
+.filter-buttons button:last-child:hover {
+    background: #303b50;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+   ========================================================= */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+table {
+    width: 100%;
+
+    min-width: 760px;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+}
+
+thead {
+    background:
+        #151c2c;
+}
+
+th {
+    padding: 14px 13px;
+
+    color: #8f9bb0;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    border-bottom:
+        1px solid #293348;
+}
+
+td {
+    padding: 15px 13px;
+
+    color: #cbd5e1;
+
+    font-size: 13px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.055);
+}
+
+tbody tr {
+    background: transparent;
+
+    transition:
+        background 0.2s ease;
+}
+
+tbody tr:hover {
+    background:
+        rgba(99, 102, 241, 0.055);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   TABLE DATA EMPHASIS
+   ========================================================= */
+
+td:nth-child(1) {
+    color: #aeb9cc;
+
+    white-space: nowrap;
+}
+
+td:nth-child(2) {
+    color: #edf2f8;
+
+    font-weight: 550;
+}
+
+td:nth-child(3) {
+    color: #b9c4d5;
+}
+
+td:nth-child(4) {
+    font-size: 11px;
+
+    font-weight: 750;
+
+    letter-spacing: 0.5px;
+}
+
+td:nth-child(5) {
+    color: #f1f5f9;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+td button {
+    margin-top: 0;
+
+    margin-right: 5px;
+
+    padding: 7px 12px;
+
+    border-radius: 7px;
+
+    font-size: 11px;
+
+    box-shadow: none;
+}
+
+td button:first-child {
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #6366f1
+        );
+}
+
+td button:last-child {
+    background:
+        linear-gradient(
+            135deg,
+            #dc2626,
+            #f43f5e
+        );
+}
+
+td button:hover {
+    box-shadow:
+        0 5px 14px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+.pagination {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 16px;
+
+    margin-top: 20px;
+
+    padding-top: 18px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pagination button {
+    margin-top: 0;
+
+    padding: 8px 15px;
+
+    background:
+        #202a3c;
+
+    border:
+        1px solid #303c53;
+
+    color: #d5dcea;
+
+    box-shadow: none;
+}
+
+.pagination button:hover:not(:disabled) {
+    background:
+        #303c53;
+
+    border-color:
+        #6366f1;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.pagination span {
+    min-width: 100px;
+
+    color: #9ba6b9;
+
+    font-size: 13px;
+
+    font-weight: 650;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   CATEGORY TABLE
+   ========================================================= */
+
+#categoryTableBody td:nth-child(1) {
+    color: #7f8ba1;
+}
+
+#categoryTableBody td:nth-child(2) {
+    color: #f1f5f9;
+
+    font-weight: 600;
+}
+
+#categoryTableBody td:nth-child(3) {
+    font-size: 11px;
+
+    font-weight: 750;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #070b14;
+}
+
+::-webkit-scrollbar-thumb {
+    background:
+        #29344a;
+
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background:
+        #3b4963;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline:
+        2px solid #818cf8;
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .summary-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .charts-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .transaction-filters {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .header {
+        padding: 26px 5%;
+    }
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .container {
+        width: 94%;
+
+        margin-top: 22px;
+    }
+
+    .summary-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .form-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .transaction-filters {
+        grid-template-columns:
+            1fr;
+    }
+
+    .form-card,
+    .table-card,
+    .chart-card {
+        padding: 20px;
+    }
+
+    .section-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .section-header button {
+        width: 100%;
+    }
+
+    .filter-buttons {
+        flex-wrap: wrap;
+    }
+
+    .filter-buttons button {
+        flex: 1;
+    }
+
+    .card {
+        min-height: 120px;
+    }
+
+    .card p {
+        font-size: 24px;
+    }
+
+    .pagination {
+        gap: 9px;
+    }
+
+    .pagination button {
+        padding: 8px 11px;
+    }
+}

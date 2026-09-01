@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expense Tracker & Financial Analytics</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div>
+        <h1>Expense Tracker</h1>
+        <p>Financial Analytics Dashboard</p>
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+    <!-- =====================================================
+         MONTH SELECTOR
+         ===================================================== -->
+
+    <section class="month-selector-card">
+
+        <div class="month-selector-content">
+
+            <div>
+                <h2>Financial Overview</h2>
+
+                <p>
+                    View your finances for a specific month
+                </p>
+            </div>
+
+
+            <div class="month-selector-group">
+
+                <label for="selectedMonth">
+                    Select Month
+                </label>
+
+                <input
+                    type="month"
+                    id="selectedMonth">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SUMMARY CARDS
+         ===================================================== -->
+
+    <section class="summary-grid">
+
+
+        <!-- TOTAL INCOME -->
+
+        <div class="card income-card">
+
+            <h3>
+                Total Income
+            </h3>
+
+            <p id="totalIncome">
+                ₹0.00
+            </p>
+
+        </div>
+
+
+        <!-- TOTAL EXPENSES -->
+
+        <div class="card expense-card">
+
+            <h3>
+                Total Expenses
+            </h3>
+
+            <p id="totalExpenses">
+                ₹0.00
+            </p>
+
+        </div>
+
+
+        <!-- BALANCE -->
+
+        <div class="card balance-card">
+
+            <h3>
+                Balance
+            </h3>
+
+            <p id="balance">
+                ₹0.00
+            </p>
+
+        </div>
+
+
+        <!-- SAVINGS -->
+
+        <div class="card savings-card">
+
+            <h3>
+                Total Savings
+            </h3>
+
+            <p id="savings">
+                ₹0.00
+            </p>
+
+        </div>
+
+
+        <!-- TRANSACTION COUNT -->
+
+        <div class="card transaction-card">
+
+            <h3>
+                Transactions
+            </h3>
+
+            <p id="transactionCount">
+                0
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CHARTS
+         ===================================================== -->
+
+    <section class="charts-grid">
+
+
+        <!-- EXPENSES BY CATEGORY -->
+
+        <div class="chart-card">
+
+            <h2>
+                Expenses by Category
+            </h2>
+
+            <canvas id="categoryChart"></canvas>
+
+        </div>
+
+
+        <!-- MONTHLY INCOME VS EXPENSES -->
+
+        <div class="chart-card">
+
+            <h2>
+                Income vs Expenses
+            </h2>
+
+            <canvas id="monthlyChart"></canvas>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ADD TRANSACTION
+         ===================================================== -->
+
+    <section class="form-card">
+
+        <h2>
+            Add Transaction
+        </h2>
+
+
+        <form id="transactionForm">
+
+
+            <div class="form-grid">
+
+
+                <!-- AMOUNT -->
+
+                <div class="form-group">
+
+                    <label for="amount">
+                        Amount
+                    </label>
+
+                    <input
+                        type="number"
+                        id="amount"
+                        min="0.01"
+                        step="0.01"
+                        placeholder="Enter amount"
+                        required>
+
+                </div>
+
+
+                <!-- TYPE -->
+
+                <div class="form-group">
+
+                    <label for="type">
+                        Type
+                    </label>
+
+                    <select
+                        id="type"
+                        required>
+
+                        <option value="">
+                            Select type
+                        </option>
+
+                        <option value="EXPENSE">
+                            Expense
+                        </option>
+
+                        <option value="INCOME">
+                            Income
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <input
+                        type="text"
+                        id="description"
+                        maxlength="500"
+                        placeholder="e.g. Groceries"
+                        required>
+
+                </div>
+
+
+                <!-- DATE -->
+
+                <div class="form-group">
+
+                    <label for="transactionDate">
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="transactionDate"
+                        required>
+
+                </div>
+
+
+                <!-- CATEGORY -->
+
+                <div class="form-group">
+
+                    <label for="category">
+                        Category
+                    </label>
+
+                    <select
+                        id="category"
+                        required>
+
+                        <option value="">
+                            Select category
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+            <button type="submit">
+                Add Transaction
+            </button>
+
+
+        </form>
+
+
+        <p id="formMessage"></p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         TRANSACTIONS
+         ===================================================== -->
+
+    <section class="table-card">
+
+
+        <!-- SECTION HEADER -->
+
+        <div class="section-header">
+
+            <h2>
+                Recent Transactions
+            </h2>
+
+
+            <button
+                type="button"
+                onclick="loadTransactions()">
+
+                Refresh
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             TRANSACTION FILTERS
+             ================================================= -->
+
+        <div class="transaction-filters">
+
+
+            <!-- SEARCH -->
+
+            <div class="filter-group">
+
+                <label for="searchDescription">
+                    Search Description
+                </label>
+
+                <input
+                    type="text"
+                    id="searchDescription"
+                    placeholder="Search description...">
+
+            </div>
+
+
+            <!-- TYPE -->
+
+            <div class="filter-group">
+
+                <label for="filterType">
+                    Type
+                </label>
+
+                <select id="filterType">
+
+                    <option value="">
+                        All Types
+                    </option>
+
+                    <option value="EXPENSE">
+                        Expense
+                    </option>
+
+                    <option value="INCOME">
+                        Income
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- CATEGORY -->
+
+            <div class="filter-group">
+
+                <label for="filterCategory">
+                    Category
+                </label>
+
+                <select id="filterCategory">
+
+                    <option value="">
+                        All Categories
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- DATE -->
+
+            <div class="filter-group">
+
+                <label for="filterDate">
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="filterDate">
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- FILTER BUTTONS -->
+
+        <div class="filter-buttons">
+
+
+            <button
+                type="button"
+                onclick="applyTransactionFilters()">
+
+                Search
+
+            </button>
+
+
+            <button
+                type="button"
+                onclick="clearTransactionFilters()">
+
+                Clear
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             TRANSACTION TABLE
+             ================================================= -->
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Description
+                        </th>
+
+                        <th>
+                            Category
+                        </th>
+
+                        <th>
+                            Type
+                        </th>
+
+                        <th>
+                            Amount
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="transactionTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PAGINATION
+             ================================================= -->
+
+        <div class="pagination">
+
+
+            <button
+                type="button"
+                id="previousPage"
+                onclick="goToPreviousPage()">
+
+                Previous
+
+            </button>
+
+
+            <span id="pageInfo">
+                Page 1
+            </span>
+
+
+            <button
+                type="button"
+                id="nextPage"
+                onclick="goToNextPage()">
+
+                Next
+
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CATEGORY MANAGEMENT
+         ===================================================== -->
+
+    <section class="form-card">
+
+
+        <h2>
+            Category Management
+        </h2>
+
+
+        <form id="categoryForm">
+
+
+            <div class="form-grid">
+
+
+                <!-- CATEGORY NAME -->
+
+                <div class="form-group">
+
+                    <label for="categoryName">
+                        Category Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="categoryName"
+                        maxlength="100"
+                        placeholder="e.g. Travel"
+                        required>
+
+                </div>
+
+
+                <!-- CATEGORY TYPE -->
+
+                <div class="form-group">
+
+                    <label for="categoryType">
+                        Category Type
+                    </label>
+
+                    <select
+                        id="categoryType"
+                        required>
+
+                        <option value="">
+                            Select type
+                        </option>
+
+                        <option value="EXPENSE">
+                            Expense
+                        </option>
+
+                        <option value="INCOME">
+                            Income
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+            <button type="submit">
+                Add Category
+            </button>
+
+
+        </form>
+
+
+        <p id="categoryMessage"></p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CATEGORY TABLE
+         ===================================================== -->
+
+    <section class="table-card">
+
+
+        <div class="section-header">
+
+
+            <h2>
+                Categories
+            </h2>
+
+
+            <button
+                type="button"
+                onclick="loadCategoryManagement()">
+
+                Refresh
+
+            </button>
+
+
+        </div>
+
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            Category Name
+                        </th>
+
+                        <th>
+                            Type
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="categoryTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script src="app.js?v=4"></script>
+
+</body>
+
+</html>
