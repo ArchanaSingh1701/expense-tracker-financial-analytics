@@ -178,8 +178,6 @@ Database
 
 
 
-svg
-
 
 
 MySQL
